@@ -64,10 +64,11 @@ def check_ne_pomnu():
 
 if __name__ == '__main__':
     check_correct(num_xpath)
-    check_incorrect(num_xpath, "1ххх11ххх")
-    check_incorrect(num_xpath, " ")
-    check_incorrect(num_xpath, "!!!!!!!!!")
+    check_incorrect(num_xpath, "1")
+    check_incorrect(num_xpath, "хх")
+    check_incorrect(num_xpath, "!")
     check_incorrect(num_xpath)
+    check_incorrect(num_xpath, " ")
     check_ne_pomnu()
     dr.quit()
 

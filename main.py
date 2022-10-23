@@ -45,10 +45,19 @@ def check_incorrect(xpath, *keys):
     if keys is not None:
         dr.find_element(By.XPATH, xpath).send_keys(keys)
 
-    if element.get_attribute("value") != keys:
+    check_value = element.get_attribute("value") + dr.find_element(By.XPATH, '//*[@id="app"]/div/div/div[2]/div''/div'
+                                                                             '[3]''/div/div[1]/div/div/div[2]''/input')\
+        .get_attribute("value")
+    check_value = "".join(check_value.lower().split(" "))
+    check_keys = "".join(keys)
+    if check_value != check_keys:
         print("success")
     else:
-        print("failed")
+        try:
+            wait_of_element_located('//*[@id="input-24"]')
+            print("failed")
+        except TimeoutException:
+            print("success")
 
 
 def check_ne_pomnu():
@@ -63,13 +72,15 @@ def check_ne_pomnu():
 
 
 if __name__ == '__main__':
-    check_correct(num_xpath)
-    check_incorrect(num_xpath, "1")
-    check_incorrect(num_xpath, "хх")
-    check_incorrect(num_xpath, "!")
-    check_incorrect(num_xpath)
-    check_incorrect(num_xpath, " ")
-    check_ne_pomnu()
+    check_correct(num_xpath)  # test case №1
+    check_incorrect(num_xpath, "1")  # test case №2
+    check_incorrect(num_xpath, "хх")  # test case №3
+    check_incorrect(num_xpath, "!")  # test case №4
+    check_incorrect(num_xpath)  # test case №5
+    check_incorrect(num_xpath, " ")  # test case №6
+    check_incorrect(num_xpath, correct_num, " ")  # test case №7
+    check_incorrect(num_xpath, correct_num, "0х")  # test case №8
+    check_ne_pomnu()  # test case №9
     dr.quit()
 
 

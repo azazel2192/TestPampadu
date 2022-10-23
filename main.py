@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException
 
 dr = webdriver.Chrome(executable_path="C:\driver\chromedriver.exe")  # указать путь к вебдрайверу
 
+correct_num = "х947се790"
 num_xpath = '//*[@id="app"]/div/div/div[2]/div/div[3]/div/div[1]/div/div/div[1]/input'
 but_xpath = '//*[@id="app"]/div/div/div[2]/div/div[3]/div/div[1]/div/button/span'
 ne_pomnu_xpath = '//*[@id="app"]/div/div/div[2]/div/div[3]/div/div[1]/div/span[3]'
@@ -23,7 +24,7 @@ def wait_of_element_located(xpath):
 def check_correct(xpath):
     dr.get("https://b2c.pampadu.ru/index.html#49a973bd-2d7c-4b9b-9c28-d986d7757983")
     wait_of_element_located(xpath)
-    dr.find_element(By.XPATH, xpath).send_keys("х940се790")
+    dr.find_element(By.XPATH, xpath).send_keys(correct_num)
     dr.find_element(By.XPATH, but_xpath).click()
 
     try:
@@ -64,7 +65,7 @@ def check_ne_pomnu():
 if __name__ == '__main__':
     check_correct(num_xpath)
     check_incorrect(num_xpath, "1ххх11ххх")
-    check_incorrect(num_xpath, "         ")
+    check_incorrect(num_xpath, " ")
     check_incorrect(num_xpath, "!!!!!!!!!")
     check_incorrect(num_xpath)
     check_ne_pomnu()

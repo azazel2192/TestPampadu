@@ -39,21 +39,15 @@ def check_correct(xpath):
 
 def check_incorrect(xpath, *keys):
     dr.get("https://b2c.pampadu.ru/index.html#49a973bd-2d7c-4b9b-9c28-d986d7757983")
-    wait_of_element_located(xpath)
+    element = wait_of_element_located(xpath)
 
     if keys is not None:
         dr.find_element(By.XPATH, xpath).send_keys(keys)
-    dr.find_element(By.XPATH, but_xpath).click()
 
-    try:
-        wait_of_element_located('//*[@id="input-26"]')
+    if element.get_attribute("value") != keys:
+        print("success")
+    else:
         print("failed")
-
-    except TimeoutException:
-        if dr.find_element(By.XPATH, xpath).get_attribute("style") in "background-color: rgb(254, 212, 203);":
-            print("success")
-        else:
-            print("failed")
 
 
 def check_ne_pomnu():

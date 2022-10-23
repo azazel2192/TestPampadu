@@ -54,7 +54,7 @@ def check_incorrect(xpath, *keys):
         print("success")
     else:
         try:
-            wait_of_element_located('//*[@id="input-24"]')
+            wait_of_element_located('//*[@id="input-26"]')
             print("failed")
         except TimeoutException:
             print("success")
